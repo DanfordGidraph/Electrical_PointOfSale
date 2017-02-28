@@ -1,0 +1,56 @@
+﻿<Window x:Class="Electricals_PointOfSale.StatisticsWindow"
+        x:Name="StatisticsWindowUI"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:DV="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:local="clr-namespace:Electricals_PointOfSale"
+        mc:Ignorable="d"
+        Title="StatisticsWindow" Height="550" Width="1000" Loaded="StatisticsWindowUI_Loaded">
+    <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/Backgrounds/StatisticsWindowBackground.jpg"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="{Binding ElementName=SalesChart}" />
+        </Grid.RowDefinitions>
+        <DatePicker x:Name="dtpSortByDay" Height="50" Width="150" Margin="20 10 620 10" FontFamily="Lumberjack" FontSize="20"  TextBlock.TextAlignment="Center" Background="Transparent" Foreground="Black" BorderBrush="{x:Null}" CalendarClosed="cmboxSortByDay_CalendarClosed"></DatePicker>
+        <ComboBox x:Name="cmboxSortByCategory" Width="150" Height="40" Margin="330 15 512 15" FontFamily="Lumberjack" FontSize="20" TextBlock.TextAlignment="Center" Background="Black" Foreground="Wheat" BorderBrush="{x:Null}"/>
+        <!--<ComboBox Width="150" Margin="400 10 240 10" FontFamily="Lumberjack" FontSize="20" TextBlock.TextAlignment="Center" Background="Black" Foreground="Wheat"/>
+        <ComboBox Width="150" Margin="600 10 40 10" FontFamily="Lumberjack" FontSize="20" TextBlock.TextAlignment="Center" Background="Black" Foreground="Wheat" />-->
+        <DVC:Chart  x:Name="SalesChart" Background="Black" Opacity=".7" Foreground="Wheat" Grid.Row="1" Grid.Column="0" Margin="0" >
+            <DVC:Chart.Axes>
+                <DVC:LinearAxis Orientation="Y" Minimum="0" Title="(Total Income From Product Sale)" Margin="0 0 5 0"/>
+                <DVC:CategoryAxis Orientation="X"  Title="(........Product Names........)" Margin="0 10 0 0"/>
+            </DVC:Chart.Axes>
+            <DVC:Chart.Series>
+                <DVC:ColumnSeries Title="Sales" Background="Black"  IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}" Margin="0" IsManipulationEnabled="True" IsSelectionEnabled="True" BorderBrush="#FF1B56F1" BorderThickness="3,2" ClipToBounds="True" Cursor="Pen" FontFamily="Lumberjack" FontSize="14.667" AnimationSequence="FirstToLast">
+                    <DVC:ColumnSeries.Style>
+                        <Style TargetType="DVC:ColumnSeries">
+                            <Setter Property="Background" Value="Black"/>
+                        </Style>
+                    </DVC:ColumnSeries.Style>
+                    <DVC:ColumnSeries.Effect>
+                        <DropShadowEffect/>
+                    </DVC:ColumnSeries.Effect>
+                    <DVC:ColumnSeries.LegendItemStyle>
+                        <Style TargetType="Control">
+                            <Setter Property="Width" Value="0" />
+                            <Setter Property="Height" Value="0" />
+                        </Style>
+                    </DVC:ColumnSeries.LegendItemStyle>
+                    <DVC:ColumnSeries.DataPointStyle>
+                        <Style TargetType="DVC:ColumnDataPoint">
+                            <Setter Property="Background" Value="Crimson" />
+                        </Style>
+                    </DVC:ColumnSeries.DataPointStyle>
+                </DVC:ColumnSeries>
+                
+            </DVC:Chart.Series>
+           
+        </DVC:Chart>
+    </Grid>
+</Window>

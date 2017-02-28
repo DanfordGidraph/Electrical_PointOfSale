@@ -1,0 +1,768 @@
+﻿<Window x:Class="Electricals_PointOfSale.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Electricals_PointOfSale"
+        mc:Ignorable="d"
+        x:Name="MainWindowUI"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms" 
+        WindowStartupLocation="CenterScreen"
+       Title="Electricals and Elecronics Store P.O.S" Height="740" Width="1280" MaxHeight="740" MaxWidth="1370" Closing="MainWindowUI_Closing" Activated="MainWindowUI_Activated" Loaded="MainWindowUI_Loaded">
+    <StackPanel Orientation="Vertical">
+
+
+        <Grid Height="80" Background="Black">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+
+
+
+            <Button x:Name="btnAddNewItemToInventory" Style="{DynamicResource ButtonStyle}" ClickMode="Press" Width="80" Height="60" Grid.Column="0" Grid.Row="0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnAddNewItemToInventory_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/Backgrounds/Add_To_Database.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="btnEditItemInInventory" Style="{DynamicResource ButtonStyle}" ClickMode="Press" Width="80" Height="60" Grid.Column="1" Grid.Row="0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnEditItemInInventory_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/Backgrounds/Update_inventory.png" Stretch="UniformToFill"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="btnShowStatistics" Style="{DynamicResource ButtonStyle}" ClickMode="Press" Width="80" Height="60" Grid.Column="2" Grid.Row="0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnShowStatistics_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/Backgrounds/view_statistics.png" Stretch="UniformToFill"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="btnExportData" Style="{DynamicResource ButtonStyle}" ClickMode="Press" Width="80" Height="60" Grid.Column="3" Grid.Row="0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnExportData_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/Backgrounds/export_to_excel.png" Stretch="UniformToFill"/>
+                </Button.Background>
+            </Button>
+
+            <Label Grid.Row="1" Grid.Column="0" Content="Add " Foreground="Wheat" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="0,-7,0,0" FontFamily="MV Boli" FontWeight="Bold"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="Update" Foreground="Wheat" FontSize="15" Margin="16.081,-8,16.081,-3" FontFamily="MV Boli" FontWeight="Bold"/>
+            <Label Grid.Row="1" Grid.Column="2" Content="Statistics" Foreground="Wheat" FontSize="15" Margin="6.353,-8,7.353,1" d:LayoutOverrides="Height" FontFamily="MV Boli" FontWeight="Bold"/>
+            <Label Grid.Row="1" Grid.Column="3" Content="Reports" Foreground="Wheat" FontSize="15" Margin="17.483,-8,6.483,-2" FontFamily="MV Boli" FontWeight="Bold"/>
+
+        </Grid>
+
+
+        <Grid Height="620" Background="#FF101011" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="550"/>
+                <ColumnDefinition Width="320"/>
+            </Grid.ColumnDefinitions>
+            <GroupBox Header="Categories" FontFamily="Lumberjack Inline Rough" FontSize="24" Margin="0" FontWeight="Bold" Foreground="Wheat" >
+                <StackPanel Orientation="Vertical" Margin="0">
+                    <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCategoriesLights" Margin="15,5,15,0" Height="37" RenderTransformOrigin="0.5,0.5" Content="Lights" Foreground="Wheat" FontSize="18" Click="btnCategoriesLights_Click">
+                        <Button.Background>
+                            <RadialGradientBrush>
+                                <GradientStop Color="Black" Offset="0.992"/>
+                                <GradientStop Color="#FF816504" Offset="0.238"/>
+                            </RadialGradientBrush>
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-40"/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCategoriesSwitches" Margin="15,5,15,0" Height="37" RenderTransformOrigin="0.5,0.5" Content="Switches" Foreground="Wheat" FontSize="18" Click="btnCategoriesSwitches_Click">
+                        <Button.Background>
+                            <RadialGradientBrush>
+                                <GradientStop Color="Black" Offset="0.992"/>
+                                <GradientStop Color="#FF816504" Offset="0.238"/>
+                            </RadialGradientBrush>
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-40"/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCategoriesSockets" Margin="15,5,15,0" Height="37" RenderTransformOrigin="0.5,0.5" Content="Sockets" Foreground="Wheat" FontSize="18" Click="btnCategoriesSockets_Click">
+                        <Button.Background>
+                            <RadialGradientBrush>
+                                <GradientStop Color="Black" Offset="0.992"/>
+                                <GradientStop Color="#FF816504" Offset="0.238"/>
+                            </RadialGradientBrush>
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-40"/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCategoriesPowerCords" Margin="15,5,15,0" Height="37" RenderTransformOrigin="0.5,0.5" Content="PowerCords" Foreground="Wheat" FontSize="18" Click="btnCategoriesPowerCords_Click">
+                        <Button.Background>
+                            <RadialGradientBrush>
+                                <GradientStop Color="Black" Offset="0.992"/>
+                                <GradientStop Color="#FF816504" Offset="0.238"/>
+                            </RadialGradientBrush>
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-40"/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCategoriesLamps" Margin="15,5,15,0" Height="37" RenderTransformOrigin="0.5,0.5" Content="Lamps" Foreground="Wheat" FontSize="18" Click="btnCategoriesLamps_Click">
+                        <Button.Background>
+                            <RadialGradientBrush>
+                                <GradientStop Color="Black" Offset="0.992"/>
+                                <GradientStop Color="#FF816504" Offset="0.238"/>
+                            </RadialGradientBrush>
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-40"/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCategoriesJacks" Margin="0,5,15,0" Height="37" RenderTransformOrigin="0.5,0.5" Content="Jacks" Foreground="Wheat" FontSize="18" HorizontalAlignment="Right" Width="108" Click="btnCategoriesJacks_Click">
+                        <Button.Background>
+                            <RadialGradientBrush>
+                                <GradientStop Color="Black" Offset="0.992"/>
+                                <GradientStop Color="#FF816504" Offset="0.238"/>
+                            </RadialGradientBrush>
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-40"/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCategoriesMiscellaneous" Margin="15,5,15,0" Height="37" RenderTransformOrigin="0.5,0.5" Content="Misc" Foreground="Wheat" FontSize="18" Click="btnCategoriesMiscellaneous_Click">
+                        <Button.Background>
+                            <RadialGradientBrush>
+                                <GradientStop Color="Black" Offset="0.992"/>
+                                <GradientStop Color="#FF816504" Offset="0.238"/>
+                            </RadialGradientBrush>
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-40"/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+
+                    <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCategoriesPipes" Margin="15,5,15,0" Height="37" RenderTransformOrigin="0.5,0.5" Content="Pipes" Foreground="Wheat" FontSize="18" Click="btnCategoriesPipes_Click">
+                        <Button.Background>
+                            <RadialGradientBrush>
+                                <GradientStop Color="Black" Offset="0.992"/>
+                                <GradientStop Color="#FF816504" Offset="0.238"/>
+                            </RadialGradientBrush>
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-40"/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCategoriesUtilities" Margin="15,5,15,0" Height="37" RenderTransformOrigin="0.5,0.5" Content="Utilities" Foreground="Wheat" FontSize="18" Click="btnCategoriesUtilities_Click">
+                        <Button.Background>
+                            <RadialGradientBrush>
+                                <GradientStop Color="Black" Offset="0.992"/>
+                                <GradientStop Color="#FF816504" Offset="0.238"/>
+                            </RadialGradientBrush>
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-40"/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCategoriesSconces" Margin="15,5,15,0" Height="37" RenderTransformOrigin="0.5,0.5" Content="Sconces" Foreground="Wheat" FontSize="18" Click="btnCategoriesSconces_Click">
+                        <Button.Background>
+                            <RadialGradientBrush>
+                                <GradientStop Color="Black" Offset="0.992"/>
+                                <GradientStop Color="#FF816504" Offset="0.238"/>
+                            </RadialGradientBrush>
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-40"/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCategoriesFittings" Margin="15,5,15,0" Height="37" RenderTransformOrigin="0.5,0.5" Content="Fittings" Foreground="Wheat" FontSize="18" Click="btnCategoriesFittings_Click">
+                        <Button.Background>
+                            <RadialGradientBrush>
+                                <GradientStop Color="Black" Offset="0.992"/>
+                                <GradientStop Color="#FF816504" Offset="0.238"/>
+                            </RadialGradientBrush>
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-40"/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCategoriesAdhesives" Margin="15,5,15,0" Height="37" RenderTransformOrigin="0.5,0.5" Content="Adhesives" Foreground="Wheat" FontSize="18" Click="btnCategoriesAdhesives_Click">
+                        <Button.Background>
+                            <RadialGradientBrush>
+                                <GradientStop Color="Black" Offset="0.992"/>
+                                <GradientStop Color="#FF816504" Offset="0.238"/>
+                            </RadialGradientBrush>
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-40"/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCategoriesExtensions" Margin="15,5,15,0" Height="37" RenderTransformOrigin="0.5,0.5" Content="Extensions" Foreground="Wheat" FontSize="18" Click="btnCategoriesExtensions_Click">
+                        <Button.Background>
+                            <RadialGradientBrush>
+                                <GradientStop Color="Black" Offset="0.992"/>
+                                <GradientStop Color="#FF816504" Offset="0.238"/>
+                            </RadialGradientBrush>
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-40"/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCategoriesChandeliers" Margin="15,5,15,0" Height="37" RenderTransformOrigin="0.5,0.5" Content="Chandelliers" Foreground="Wheat" FontSize="18" Click="btnCategoriesChandeliers_Click">
+                        <Button.Background>
+                            <RadialGradientBrush>
+                                <GradientStop Color="Black" Offset="0.992"/>
+                                <GradientStop Color="#FF816504" Offset="0.238"/>
+                            </RadialGradientBrush>
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-40"/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+
+                </StackPanel>
+
+            </GroupBox>
+            <Border BorderBrush="Azure"  Margin="0" Grid.Column="1">
+                <StackPanel Orientation="Vertical">
+                    <GroupBox Header="Items" FontFamily="Lumberjack Inline Rough" FontSize="24" Margin="0" FontWeight="Bold" Foreground="Wheat" >
+                        <StackPanel>
+                            <Grid Height="30" Margin="0 0">
+                                <Border Height="30" BorderBrush="Cyan" BorderThickness="2" Width="100" Margin="0 0 135 0">
+                                    <Label Content="Item Name" FontFamily="LumberJack" FontSize="15" Foreground="Cyan"></Label>
+                                </Border>
+                                <Border Height="30" BorderBrush="Cyan" BorderThickness="2" Width="80" Margin="150 0 5 0">
+                                    <Label Content="Min. Price" FontFamily="LumberJack" FontSize="15" Foreground="Cyan"></Label>
+                                </Border>
+                            </Grid>
+                            <ListBox x:Name="lstbxItemsInCategory" Height="415" Foreground="Wheat" FontSize="18" SelectionChanged="lstbxItemsInCategory_SelectionChanged">
+                                <ListBox.Background>
+                                    <ImageBrush ImageSource="Images/Backgrounds/Board_Background_Black.jpg"/>
+                                </ListBox.Background>
+                            </ListBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Selection" FontFamily="Lumberjack Inline Rough" FontSize="15" Margin="0" FontWeight="Bold" Foreground="Wheat" Height="130">
+                        <Grid Margin="0" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="35"/>
+                                <RowDefinition Height="35"/>
+                                <RowDefinition Height="35"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Margin="2,0,0,0" Width="95" Height="35" Content="Selected Item" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontFamily="Lumberjack Inline Rough" FontSize="15" FontWeight="Bold" Foreground="Wheat"/>
+                            <Label Grid.Row="1" Margin="1 1 1 1" Width="95" Height="35" Content="Quantity" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Lumberjack Inline Rough" FontSize="15" FontWeight="Bold" Foreground="Wheat"/>
+                            <Label Grid.Row="2" Margin="1 1 1 1" Width="95" Height="35" Content="Sell Price" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Lumberjack Inline Rough" FontSize="15" FontWeight="Bold" Foreground="Wheat"/>
+                            <Border Grid.Row="3" Width="80" Margin="50,2,59,2" BorderBrush="Orange" BorderThickness="1">
+                                <TextBox x:Name="txtbxSellPrice" Cursor="IBeam" Text="0" Background="Black" TextAlignment="Center" Foreground="WhiteSmoke" Margin="0" FontFamily="Lumberjack" FontSize="26.667" FontWeight="Normal" />
+                            </Border>
+                            <Button x:Name="btnAddToCart" Style="{DynamicResource ButtonStyle}" Margin="160,2,2,2" Grid.Row="3" Click="btnAddToCart_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/Backgrounds/add-to-cart-button.png"/>
+                                </Button.Background>
+                            </Button>
+                            <Border Grid.Row="0" Width="130" Margin="100,0,0,0" BorderBrush="Orange" BorderThickness="1" HorizontalAlignment="Left" d:LayoutOverrides="Width">
+                                <TextBlock x:Name="txtblkSelectedItem" Background="Black"  Margin="0" Foreground="WhiteSmoke" FontSize="18.667"  />
+                            </Border>
+                            <Button Style="{DynamicResource ButtonStyle}" x:Name="btnSubtractQuantity" Grid.Row="1" Margin="100,0,0,0" HorizontalAlignment="Left" Width="28" Click="btnSubtractQuantity_Click" >
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/Backgrounds/Minus.png"/>
+                                </Button.Background>
+                            </Button>
+                            <Border Grid.Row="1" Width="50" Margin="135,2,54,2" BorderBrush="Orange" BorderThickness="1">
+                                <TextBlock x:Name="txtblkQuantity" Background="Black" Margin="0" Foreground="WhiteSmoke" Text="1"  FontSize="26.667" FontFamily="Lumberjack" TextAlignment="Center"/>
+                            </Border>
+
+                            <Button Style="{DynamicResource ButtonStyle}" x:Name="btnAddQuantity" Margin="0,0,18,0" HorizontalAlignment="Right" Width="28" Click="btnAddQuantity_Click" Grid.Row="1" >
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/Backgrounds/Add.png"/>
+                                </Button.Background>
+                            </Button>
+                        </Grid>
+                    </GroupBox>
+                </StackPanel>
+
+            </Border>
+
+
+            <GroupBox Header="Cart Items Image Preview" Grid.Column="2" BorderBrush="Aqua" FontFamily="Lumberjack Inline Rough" FontSize="24" Margin="0" FontWeight="Bold" Foreground="Wheat">
+                <Grid x:Name="CartItemsImagesGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="133"/>
+                        <ColumnDefinition Width="133"/>
+                        <ColumnDefinition Width="133"/>
+                        <ColumnDefinition Width="133"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="148"/>
+                        <RowDefinition Height="148"/>
+                        <RowDefinition Height="148"/>
+                        <RowDefinition Height="148"/>
+                    </Grid.RowDefinitions>
+
+
+                    <Border Grid.Column="0" Grid.Row="0" BorderBrush="Cyan" BorderThickness="2" CornerRadius="5" Margin="2">
+                        <Border.Background>
+                            <ImageBrush ImageSource="Images/Backgrounds/Empty Red Cart.png"/>
+                        </Border.Background>
+                        <Image x:Name="imgCartItem1" Margin="0" ></Image>
+                    </Border>
+                    <Border Grid.Column="1" Grid.Row="0" BorderBrush="Cyan" BorderThickness="2" CornerRadius="5" Margin="2">
+                        <Border.Background>
+                            <ImageBrush ImageSource="Images/Backgrounds/Empty Red Cart.png"/>
+                        </Border.Background>
+                        <Image x:Name="imgCartItem2" Margin="0"></Image>
+                    </Border>
+                    <Border Grid.Column="2" Grid.Row="0" BorderBrush="Cyan" BorderThickness="2" CornerRadius="5" Margin="2">
+                        <Border.Background>
+                            <ImageBrush ImageSource="Images/Backgrounds/Empty Red Cart.png"/>
+                        </Border.Background>
+                        <Image x:Name="imgCartItem3" Margin="0"></Image>
+                    </Border>
+                    <Border Grid.Column="3" Grid.Row="0" BorderBrush="Cyan" BorderThickness="2" CornerRadius="5" Margin="2">
+                        <Border.Background>
+                            <ImageBrush ImageSource="Images/Backgrounds/Empty Red Cart.png"/>
+                        </Border.Background>
+                        <Image x:Name="imgCartItem4" Margin="0"></Image>
+                    </Border>
+
+
+                    <Border Grid.Column="0" Grid.Row="1" BorderBrush="Cyan" BorderThickness="2" CornerRadius="5" Margin="2">
+                        <Border.Background>
+                            <ImageBrush ImageSource="Images/Backgrounds/Empty Red Cart.png"/>
+                        </Border.Background>
+                        <Image x:Name="imgCartItem5" Margin="0"></Image>
+                    </Border>
+                    <Border Grid.Column="1" Grid.Row="1" BorderBrush="Cyan" BorderThickness="2" CornerRadius="5" Margin="2">
+                        <Border.Background>
+                            <ImageBrush ImageSource="Images/Backgrounds/Empty Red Cart.png"/>
+                        </Border.Background>
+                        <Image x:Name="imgCartItem6" Margin="0" />
+                    </Border>
+                    <Border Grid.Column="2" Grid.Row="1" BorderBrush="Cyan" BorderThickness="2" CornerRadius="5" Margin="2">
+                        <Border.Background>
+                            <ImageBrush ImageSource="Images/Backgrounds/Empty Red Cart.png"/>
+                        </Border.Background>
+                        <Image x:Name="imgCartItem7" Margin="0"></Image>
+                    </Border>
+                    <Border Grid.Column="3" Grid.Row="1" BorderBrush="Cyan" BorderThickness="2" CornerRadius="5" Margin="2">
+                        <Border.Background>
+                            <ImageBrush ImageSource="Images/Backgrounds/Empty Red Cart.png"/>
+                        </Border.Background>
+                        <Image x:Name="imgCartItem8" Margin="0"></Image>
+                    </Border>
+
+
+                    <Border Grid.Column="0" Grid.Row="2" BorderBrush="Cyan" BorderThickness="2" CornerRadius="5" Margin="2">
+                        <Border.Background>
+                            <ImageBrush ImageSource="Images/Backgrounds/Empty Red Cart.png"/>
+                        </Border.Background>
+                        <Image x:Name="imgCartItem9" Margin="0"></Image>
+                    </Border>
+                    <Border Grid.Column="1" Grid.Row="2" BorderBrush="Cyan" BorderThickness="2" CornerRadius="5" Margin="2">
+                        <Border.Background>
+                            <ImageBrush ImageSource="Images/Backgrounds/Empty Red Cart.png"/>
+                        </Border.Background>
+                        <Image x:Name="imgCartItem10" Margin="0"></Image>
+                    </Border>
+                    <Border Grid.Column="2" Grid.Row="2" BorderBrush="Cyan" BorderThickness="2" CornerRadius="5" Margin="2">
+                        <Border.Background>
+                            <ImageBrush ImageSource="Images/Backgrounds/Empty Red Cart.png"/>
+                        </Border.Background>
+                        <Image x:Name="imgCartItem11" Margin="0"></Image>
+                    </Border>
+                    <Border Grid.Column="3" Grid.Row="2" BorderBrush="Cyan" BorderThickness="2" CornerRadius="5" Margin="2">
+                        <Border.Background>
+                            <ImageBrush ImageSource="Images/Backgrounds/Empty Red Cart.png"/>
+                        </Border.Background>
+                        <Image x:Name="imgCartItem12" Margin="0"></Image>
+                    </Border>
+
+
+                    <Border Grid.Column="0" Grid.Row="3" BorderBrush="Cyan" BorderThickness="2" CornerRadius="5" Margin="2" >
+                        <Border.Background>
+                            <ImageBrush ImageSource="Images/Backgrounds/Empty Red Cart.png"/>
+                        </Border.Background>
+                        <Image x:Name="imgCartItem13" Margin="0"></Image>
+                    </Border>
+                    <Border Grid.Column="1" Grid.Row="3" BorderBrush="Cyan" BorderThickness="2" CornerRadius="5" Margin="2">
+                        <Border.Background>
+                            <ImageBrush ImageSource="Images/Backgrounds/Empty Red Cart.png"/>
+                        </Border.Background>
+                        <Image x:Name="imgCartItem14" Margin="0"></Image>
+                    </Border>
+                    <Border Grid.Column="2" Grid.Row="3" BorderBrush="Cyan" BorderThickness="2" CornerRadius="5" Margin="2">
+                        <Border.Background>
+                            <ImageBrush ImageSource="Images/Backgrounds/Empty Red Cart.png"/>
+                        </Border.Background>
+                        <Image x:Name="imgCartItem15" Margin="0"></Image>
+                    </Border>
+                    <Border Grid.Column="3" Grid.Row="3" BorderBrush="Cyan" BorderThickness="2" CornerRadius="5" Margin="2">
+                        <Border.Background>
+                            <ImageBrush ImageSource="Images/Backgrounds/Empty Red Cart.png"/>
+                        </Border.Background>
+                        <Image x:Name="imgCartItem16" Margin="0"></Image>
+                    </Border>
+                </Grid>
+            </GroupBox>
+
+
+
+            <GroupBox Header="Receipt Items" Grid.Column="3" BorderBrush="Beige" BorderThickness="2" FontFamily="Lumberjack Inline Rough" FontSize="24" Margin="0" FontWeight="Bold" Foreground="Wheat">
+                <StackPanel Orientation="Vertical">
+                    <Grid x:Name="grdReceipt" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="30" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+
+                        </Grid.RowDefinitions>
+
+                        <TextBlock  x:Name="lblReceiptItemsNameTitle" Grid.Column="0" Grid.Row="1" Margin="5,0,0,0" Height="25" Text="ITEM NAME" FontSize="25" Foreground="#FF11E4D1" />
+                        <TextBlock  x:Name="lblReceiptItemsQtyTitle" Grid.Column="1" Grid.Row="1" Margin="5,0,0,0" Height="25" Text="QTY" FontSize="25" Foreground="#FF11E4D1" />
+                        <TextBlock  x:Name="lblReceiptItemsPriceTitle" Grid.Column="2" Grid.Row="1" Margin="5,0,0,0" Height="25" Text="PRICE" FontSize="25" Foreground="#FF11E4D1" />
+
+                        <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" >
+                            <Label.Background>
+                                <ImageBrush ImageSource="Images/Backgrounds/chain.png" Stretch="UniformToFill"/>
+                            </Label.Background>
+                        </Label>
+
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="0" Grid.Row="3">
+                            <TextBlock x:Name="txtblkReceiptItemName1" Background="Wheat" Foreground="Black" FontSize="14.667" />
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="0" Grid.Row="4">
+                            <TextBlock x:Name="txtblkReceiptItemName2" Background="Wheat" Foreground="Black" FontSize="14.667" />
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="0" Grid.Row="5">
+                            <TextBlock x:Name="txtblkReceiptItemName3" Background="Wheat" Foreground="Black" FontSize="14.667" />
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="0" Grid.Row="6">
+                            <TextBlock x:Name="txtblkReceiptItemName4" Background="Wheat" Foreground="Black" FontSize="14.667" />
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="0" Grid.Row="7">
+                            <TextBlock x:Name="txtblkReceiptItemName5" Background="Wheat" Foreground="Black" FontSize="14.667" />
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="0" Grid.Row="8">
+                            <TextBlock x:Name="txtblkReceiptItemName6" Background="Wheat" Foreground="Black" FontSize="14.667" />
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="0" Grid.Row="9">
+                            <TextBlock x:Name="txtblkReceiptItemName7" Background="Wheat" Foreground="Black" FontSize="14.667" />
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="0" Grid.Row="10">
+                            <TextBlock x:Name="txtblkReceiptItemName8" Background="Wheat" Foreground="Black" FontSize="14.667" />
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="0" Grid.Row="11">
+                            <TextBlock x:Name="txtblkReceiptItemName9" Background="Wheat" Foreground="Black" FontSize="14.667" />
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="0" Grid.Row="12">
+                            <TextBlock x:Name="txtblkReceiptItemName10" Background="Wheat" Foreground="Black" FontSize="14.667" />
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="0" Grid.Row="13">
+                            <TextBlock x:Name="txtblkReceiptItemName11" Background="Wheat" Foreground="Black" FontSize="14.667" />
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="0" Grid.Row="14">
+                            <TextBlock x:Name="txtblkReceiptItemName12" Background="Wheat" Foreground="Black" FontSize="14.667" />
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="0" Grid.Row="15">
+                            <TextBlock x:Name="txtblkReceiptItemName13" Background="Wheat" Foreground="Black" FontSize="14.667" />
+                        </Border>
+
+
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="1" Grid.Row="3">
+                            <TextBlock x:Name="txtblkReceiptItemQty1" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="1" Grid.Row="4">
+                            <TextBlock x:Name="txtblkReceiptItemQty2" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="1" Grid.Row="5">
+                            <TextBlock x:Name="txtblkReceiptItemQty3" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="1" Grid.Row="6">
+                            <TextBlock x:Name="txtblkReceiptItemQty4" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="1" Grid.Row="7">
+                            <TextBlock x:Name="txtblkReceiptItemQty5" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="1" Grid.Row="8">
+                            <TextBlock x:Name="txtblkReceiptItemQty6" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="1" Grid.Row="9">
+                            <TextBlock x:Name="txtblkReceiptItemQty7" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="1" Grid.Row="10">
+                            <TextBlock x:Name="txtblkReceiptItemQty8" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="1" Grid.Row="11">
+                            <TextBlock x:Name="txtblkReceiptItemQty9" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="1" Grid.Row="12">
+                            <TextBlock x:Name="txtblkReceiptItemQty10" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="1" Grid.Row="13">
+                            <TextBlock x:Name="txtblkReceiptItemQty11" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="1" Grid.Row="14">
+                            <TextBlock x:Name="txtblkReceiptItemQty12" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="1" Grid.Row="15">
+                            <TextBlock x:Name="txtblkReceiptItemQty13" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+
+
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="2" Grid.Row="3">
+                            <TextBlock x:Name="txtblkReceiptItemPrice1" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="2" Grid.Row="4">
+                            <TextBlock x:Name="txtblkReceiptItemPrice2" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="2" Grid.Row="5">
+                            <TextBlock x:Name="txtblkReceiptItemPrice3" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="2" Grid.Row="6">
+                            <TextBlock x:Name="txtblkReceiptItemPrice4" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="2" Grid.Row="7">
+                            <TextBlock x:Name="txtblkReceiptItemPrice5" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="2" Grid.Row="8">
+                            <TextBlock x:Name="txtblkReceiptItemPrice6" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="2" Grid.Row="9">
+                            <TextBlock x:Name="txtblkReceiptItemPrice7" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="2" Grid.Row="10">
+                            <TextBlock x:Name="txtblkReceiptItemPrice8" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="2" Grid.Row="11">
+                            <TextBlock x:Name="txtblkReceiptItemPrice9" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="2" Grid.Row="12">
+                            <TextBlock x:Name="txtblkReceiptItemPrice10" Background="Wheat" Foreground="Black" FontSize="21.333" />
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="2" Grid.Row="13">
+                            <TextBlock x:Name="txtblkReceiptItemPrice11" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="2" Grid.Row="14">
+                            <TextBlock x:Name="txtblkReceiptItemPrice12" Background="Wheat" Foreground="Black" FontSize="21.333" />
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="2" Grid.Row="15">
+                            <TextBlock x:Name="txtblkReceiptItemPrice13" Background="Wheat" Foreground="Black" FontSize="21.333"/>
+                        </Border>
+
+
+
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="3" Grid.Row="3">
+                            <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCancelReceiptItem1" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnCancelReceiptItem1_Click" Height="23" VerticalAlignment="Top">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/Backgrounds/cancel-button.png"/>
+                                </Button.Background>
+                            </Button>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="3" Grid.Row="4">
+                            <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCancelReceiptItem2" Foreground="{x:Null}" BorderBrush="{x:Null}" Click="btnCancelReceiptItem2_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/Backgrounds/cancel-button.png"/>
+                                </Button.Background>
+                            </Button>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="3" Grid.Row="5">
+                            <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCancelReceiptItem3" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnCancelReceiptItem3_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/Backgrounds/cancel-button.png"/>
+                                </Button.Background>
+                            </Button>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="3" Grid.Row="6">
+                            <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCancelReceiptItem4" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnCancelReceiptItem4_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/Backgrounds/cancel-button.png"/>
+                                </Button.Background>
+                            </Button>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="3" Grid.Row="7">
+                            <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCancelReceiptItem5" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnCancelReceiptItem5_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/Backgrounds/cancel-button.png"/>
+                                </Button.Background>
+                            </Button>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="3" Grid.Row="8">
+                            <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCancelReceiptItem6" Foreground="{x:Null}" BorderBrush="{x:Null}" Click="btnCancelReceiptItem6_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/Backgrounds/cancel-button.png"/>
+                                </Button.Background>
+                            </Button>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="3" Grid.Row="9">
+                            <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCancelReceiptItem7" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnCancelReceiptItem7_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/Backgrounds/cancel-button.png"/>
+                                </Button.Background>
+                            </Button>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="3" Grid.Row="10">
+                            <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCancelReceiptItem8" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnCancelReceiptItem8_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/Backgrounds/cancel-button.png"/>
+                                </Button.Background>
+                            </Button>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="3" Grid.Row="11">
+                            <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCancelReceiptItem9" Foreground="{x:Null}" BorderBrush="{x:Null}" Click="btnCancelReceiptItem9_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/Backgrounds/cancel-button.png"/>
+                                </Button.Background>
+                            </Button>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="3" Grid.Row="12">
+                            <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCancelReceiptItem10" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnCancelReceiptItem10_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/Backgrounds/cancel-button.png"/>
+                                </Button.Background>
+                            </Button>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="3" Grid.Row="13">
+                            <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCancelReceiptItem11" Foreground="{x:Null}" BorderBrush="{x:Null}" Click="btnCancelReceiptItem11_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/Backgrounds/cancel-button.png"/>
+                                </Button.Background>
+                            </Button>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="3" Grid.Row="14">
+                            <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCancelReceiptItem12" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnCancelReceiptItem12_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/Backgrounds/cancel-button.png"/>
+                                </Button.Background>
+                            </Button>
+                        </Border>
+                        <Border BorderBrush="YellowGreen" BorderThickness="1" CornerRadius="3" Grid.Column="3" Grid.Row="15">
+                            <Button Style="{DynamicResource ButtonStyle}" x:Name="btnCancelReceiptItem13" Foreground="{x:Null}" BorderBrush="{x:Null}" Click="btnCancelReceiptItem13_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/Backgrounds/cancel-button.png"/>
+                                </Button.Background>
+                            </Button>
+                        </Border>
+
+                        <Label Grid.Column="0" Grid.Row="16" Grid.ColumnSpan="4" >
+                            <Label.Background>
+                                <ImageBrush ImageSource="Images/Backgrounds/chain.png" Stretch="UniformToFill"/>
+                            </Label.Background>
+                        </Label>
+
+                        <TextBlock x:Name="txtblkReceiptTotalTitle" Text="TOTAL" Grid.Column="0" Grid.Row="17" TextAlignment="Center" Background="Black" />
+                        <TextBlock x:Name="txtblkReceiptTotalPrice"  Text="0"  Grid.Column="2" Grid.Row="17" TextAlignment="Center" Background="Black" FontFamily="Lumberjack" />
+
+                    </Grid>
+                    <Grid x:Name="grdCheckout" Height="82">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="Images/Backgrounds/checkout_proceed.png"/>
+                        </Grid.Background>
+                        <Button x:Name="btnProceedeToCheckout" Style="{DynamicResource ButtonStyle}"  Margin="70,43,69,10" Foreground="{x:Null}" Click="btnProceedeToCheckout_Click">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Images/Backgrounds/checkout_button.jpg" Stretch="UniformToFill"/>
+                            </Button.Background>
+                        </Button>
+
+                    </Grid>
+                    <Button x:Name="btnCancelOrder" Style="{DynamicResource ButtonStyle}"  Margin="70,10,69,10"  Height="30" Foreground="{x:Null}" Click="btnCancelOrder_Click">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Images/Backgrounds/cancelButton.png"/>
+                        </Button.Background>
+
+                    </Button>
+                </StackPanel>
+            </GroupBox>
+        </Grid>
+    </StackPanel>
+</Window>
